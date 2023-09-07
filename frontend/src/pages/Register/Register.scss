@@ -1,0 +1,14 @@
+.Register {
+    .name {
+        display: flex;
+
+        .Input {
+            min-width: none!important;
+            width: 5rem!important;
+
+            input {
+                width: 10px;
+            }
+        }
+    }
+}
