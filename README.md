@@ -1,28 +1,28 @@
 # caretrace
-This is the basic login / register feature for caretrace.
-This includes:
+Dette er den grundlæggende login / registreringsfunktion for caretrace.
+Dette inkluderer:
 * Login
-* Register
-* Email confirmation (using emailjs)
-* Password reset
+* Registrering
+* E-mail bekræftelse (ved brug af emailjs)
+* Nulstilling af adgangskode
 
-This project is far from safe, but is more than enough for a proof of concept.
+Dette projekt er langt fra sikkert, men er mere end nok til en proof of concept.
 
-## How to run
-This is a short guide on how to get the project up and running.
-Start by installing node.js here: [https://nodejs.org/dist/v20.6.0/node-v20.6.0-x64.msi](https://nodejs.org/dist/v20.6.0/node-v20.6.0-x64.msi)
-Then download git here: [https://github.com/git-for-windows/git/releases/download/v2.42.0.windows.2/Git-2.42.0.2-64-bit.exe](https://github.com/git-for-windows/git/releases/download/v2.42.0.windows.2/Git-2.42.0.2-64-bit.exe)
+## Sådan starter du projektet
+Dette er en kort vejledning i, hvordan du får projektet op at køre.
+Start med at installere node.js her: [https://nodejs.org/dist/v20.6.0/node-v20.6.0-x64.msi](https://nodejs.org/dist/v20.6.0/node-v20.6.0-x64.msi)
+Download derefter git her: [https://github.com/git-for-windows/git/releases/download/v2.42.0.windows.2/Git-2.42.0.2-64-bit.exe](https://github.com/git-for-windows/git/releases/download/v2.42.0.windows.2/Git-2.42.0.2-64-bit.exe)
 
-After you've done this, you should be able to open either Terminal, CMD or PowerShell on your computer, and run the steps below.
+Når du har gjort dette, skal du åbne enten Terminal, CMD eller PowerShell på din computer og køre trinene nedenfor.
 
 ## 1
-Download/clone the repository
+Download/klon repositoriet
 ```sh
 git clone https://github.com/DDDASHXD/caretrace.git
 ```
 
 ## 2
-Initialize the API and Frontend
+Initialiser API'et og Frontend
 ```sh
 cd api
 npm i
@@ -31,23 +31,23 @@ npm i
 ```
 
 ## 3
-Once you've downloaded and initialized the two projects, open another terminal window, and run both projects.
+Når du har downloadet og initialiseret de to projekter, åbn et andet terminalvindue og kør begge projekter.
 
 *Terminal 1*
 ```sh
-# Start the API
-cd path_to_project/api
+# Start API'et
+cd sti_til_projekt/api
 npm run dev
 ```
 
 *Terminal 2*
 ```sh
-# Start the frontend
-cd path_to_project/frontend
+# Start frontend
+cd sti_til_projekt/frontend
 npm start
 ```
 
-That's it! The project should now run, and you should be able to register an account and then login.
+Det var det! Projektet skulle nu køre, og du skulle være i stand til at registrere en konto og derefter logge ind.
 
 ## Disclaimer
-Please be mindful of how many accounts you create, as the email service only has a limited amount of emails that can be sent, before they require payment.
+Vær opmærksom på, hvor mange konti du opretter, da e-mail-tjenesten kun har et begrænset antal e-mails, der kan sendes, før de kræver betaling.
