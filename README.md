@@ -24,7 +24,7 @@ git clone https://github.com/DDDASHXD/caretrace.git
 ## 2
 Initialiser API'et og Frontend
 ```sh
-cd api
+cd ./caretrace/api
 npm i
 cd ../frontend
 npm i
