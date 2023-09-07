@@ -9,7 +9,10 @@ This includes:
 This project is far from safe, but is more than enough for a proof of concept.
 
 ## How to run
+#### 1)
 Download the repository
 ```sh
 git clone https://github.com/DDDASHXD/caretrace
 ```
+
+
