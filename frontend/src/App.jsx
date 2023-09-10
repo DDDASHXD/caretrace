@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import { getUser, setUser } from "./helpers/localstorage";
 import "./global.scss";
+import { io } from "socket.io-client";
 
 import Landing from "./pages/Landing/Landing";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -37,6 +38,7 @@ function App() {
 
     updateUser();
   });
+
   return (
     <div className="App">
       <Router>

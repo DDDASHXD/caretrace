@@ -17,6 +17,7 @@ const createSocket = (port) => {
     });
 
     socket.on("counter", (e) => {
+      socket.broadcast.emit("counter", e);
       if (e > 40) {
         console.error("The patient has moved out of the geofence!");
         socket.emit(

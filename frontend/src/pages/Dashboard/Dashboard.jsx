@@ -2,10 +2,12 @@ import React from "react";
 import "./Dashboard.scss";
 import { clearUser, getUser } from "../../helpers/localstorage";
 import { useNavigate } from "react-router-dom";
+import { io } from "socket.io-client";
 
 const Dashboard = () => {
   const [user, setUser] = React.useState({});
   const navigate = useNavigate();
+  const [counter, setCounter] = React.useState(0);
 
   React.useEffect(() => {
     const localUser = getUser();
@@ -15,6 +17,18 @@ const Dashboard = () => {
     } else {
       navigate("/login");
     }
+  }, []);
+
+  React.useEffect(() => {
+    const socket = io("ws://localhost:5050");
+
+    socket.on("counter", (e) => {
+      setCounter(e);
+    });
+
+    return () => {
+      socket.removeAllListeners();
+    };
   }, []);
 
   const handleSignOut = () => {
@@ -33,6 +47,7 @@ const Dashboard = () => {
           <button className="signOut" onClick={() => handleSignOut()}>
             Sign out
           </button>
+          <p>Counter: {counter}</p>
         </>
       )}
     </div>

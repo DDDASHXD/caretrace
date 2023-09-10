@@ -18,7 +18,12 @@ const SocketTest = () => {
   }, [counter]);
   return (
     <div>
-      <button onClick={() => setCounter(counter + 1)}>+</button>
+      <button
+        style={{ fontSize: 60, padding: "0 50px" }}
+        onClick={() => setCounter(counter + 1)}
+      >
+        +
+      </button>
     </div>
   );
 };
