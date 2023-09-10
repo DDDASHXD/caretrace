@@ -4,10 +4,13 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const cors = require("cors");
+const createSocket = require("./socket");
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+createSocket(process.env.SOCKET_PORT);
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -161,7 +164,7 @@ app.post("/test", async (req, res) => {
   }
 });
 
-const port = 5000;
+const port = process.env.API_PORT;
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

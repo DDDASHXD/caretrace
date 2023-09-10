@@ -11,6 +11,7 @@ import Register from "./pages/Register/Register";
 import NotFound from "./pages/NotFound/NotFound";
 import Confirm from "./pages/Confirm/Confirm";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import SocketTest from "./pages/SocketTest/SocketTest";
 
 import useOnTabFocus from "./helpers/useOnTabFocus";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
@@ -48,6 +49,7 @@ function App() {
           <Route exact path="*" element={<NotFound />} />
           <Route exact path="/confirm/:token" element={<Confirm />} />
           <Route exact path="/reset/:token" element={<ResetPassword />} />
+          <Route exact path="/socket" element={<SocketTest />} />
         </Routes>
       </Router>
     </div>
