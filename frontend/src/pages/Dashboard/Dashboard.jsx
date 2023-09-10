@@ -8,6 +8,8 @@ const Dashboard = () => {
   const [user, setUser] = React.useState({});
   const navigate = useNavigate();
   const [counter, setCounter] = React.useState(0);
+  const [coords, setCoords] = React.useState({ x: 0, y: 0 });
+  const [geoSafe, setGeoSafe] = React.useState(true);
 
   React.useEffect(() => {
     const localUser = getUser();
@@ -24,6 +26,15 @@ const Dashboard = () => {
 
     socket.on("counter", (e) => {
       setCounter(e);
+    });
+
+    socket.on("coords", (e) => {
+      setCoords({ x: e.x, y: e.y });
+      if (e.geoSafe) {
+        setGeoSafe(true);
+      } else {
+        setGeoSafe(false);
+      }
     });
 
     return () => {
@@ -48,6 +59,9 @@ const Dashboard = () => {
             Sign out
           </button>
           <p>Counter: {counter}</p>
+          <p style={{ color: geoSafe ? "green" : "red" }}>
+            x: {coords.x} | y: {coords.y}
+          </p>
         </>
       )}
     </div>

@@ -16,6 +16,18 @@ const createSocket = (port) => {
       console.log(e);
     });
 
+    socket.on("coords", (e) => {
+      const { x, y } = e;
+
+      if (x > 550 || x < 250 || y > 550 || y < 250) {
+        console.log("Outside of geofence");
+        socket.broadcast.emit("coords", { x, y, geoSafe: false });
+      } else {
+        console.log("inside of geofence");
+        socket.broadcast.emit("coords", { x, y, geoSafe: true });
+      }
+    });
+
     socket.on("counter", (e) => {
       socket.broadcast.emit("counter", e);
       if (e > 40) {
