@@ -27,9 +27,24 @@ const userSchema = new mongoose.Schema({
   confirmationToken: String,
   passwordResetToken: String,
   passwordResetExpires: Date,
+  members: { type: Array, default: [] },
+});
+
+const memberSchema = new mongoose.Schema({
+  name: String,
+  surname: String,
+  owner: String,
+});
+
+const deviceSchema = new mongoose.Schema({
+  name: String,
+  owner: String,
+  locX: Number,
+  locY: Number,
 });
 
 const User = mongoose.model("User", userSchema);
+const Member = mongoose.model("Member", memberSchema);
 
 app.post("/register", async (req, res) => {
   const { username, password, name, surname, email } = req.body;
@@ -164,7 +179,34 @@ app.post("/test", async (req, res) => {
   }
 });
 
-const port = process.env.API_PORT;
-app.listen(port, () => {
+app.get("/getMembers", async (req, res) => {
+  console.log("/getMembers request");
+  const { owner } = req.query;
+
+  const members = await Member.find({ owner });
+
+  if (!members) {
+    return res.status(404).send("No members found");
+  }
+
+  console.log(members);
+
+  res.status(200).send(members);
+});
+
+app.post("/addMember", async (req, res) => {
+  const { name, surname, owner } = req.body;
+
+  const newMember = new Member({
+    name,
+    surname,
+    owner,
+  });
+
+  await newMember.save();
+  res.status(201).send({ msg: "Member added", member: newMember });
+});
+
+app.listen(process.env.API_PORT, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

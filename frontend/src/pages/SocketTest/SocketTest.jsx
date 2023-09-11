@@ -48,7 +48,9 @@ const SocketTest = () => {
 
   return (
     <div>
-      <div className="gpssim" ref={hoverZone}></div>
+      <div className="gpssim" ref={hoverZone}>
+        <h1 style={{ fontSize: "3rem" }}>Udenfor plejehjem</h1>
+      </div>
       <button
         style={{ fontSize: 60, padding: "0 50px" }}
         onClick={() => setCounter(counter + 1)}
