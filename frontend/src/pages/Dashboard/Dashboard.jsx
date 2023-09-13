@@ -31,7 +31,7 @@ const Dashboard = () => {
   const getMembers = async () => {
     console.log("user.email", user.name);
     await axios
-      .get(`http://localhost:5000/getMembers?owner=skov@skov.skov`)
+      .get(`http://localhost:5000/getMembers?owner=${user.email}`)
       .then((e) => {
         setMembers(e.data);
         console.log(e.data);
@@ -40,6 +40,12 @@ const Dashboard = () => {
         console.error(e.data);
       });
   };
+
+  React.useEffect(() => {
+    if (user) {
+      getMembers();
+    }
+  }, [user])
 
   React.useEffect(() => {
     const socket = io("ws://localhost:5050");
@@ -56,10 +62,6 @@ const Dashboard = () => {
         setGeoSafe(false);
       }
     });
-
-    if (user) {
-      getMembers();
-    }
 
     return () => {
       socket.removeAllListeners();
@@ -120,8 +122,8 @@ const Dashboard = () => {
           {members.length > 0 ? (
             <ul>
               {members.map((member) => (
-                <li key={member.email}>
-                  {member.name} | {member.email}
+                <li key={member.name}>
+                  {member.name} | {member.surname}
                 </li>
               ))}
             </ul>

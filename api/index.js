@@ -208,5 +208,5 @@ app.post("/addMember", async (req, res) => {
 });
 
 app.listen(process.env.API_PORT, () => {
-  console.log(`Server running on http://localhost:${port}`);
+  console.log(`Server running on http://localhost:${process.env.API_PORT}`);
 });

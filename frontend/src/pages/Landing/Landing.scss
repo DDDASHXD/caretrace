@@ -1,3 +1,85 @@
 .Landing {
+    background: linear-gradient(to bottom, white, green);
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 40px;
+
+    #logo {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1000;
+    }
     
+    #logo-container {
+        position: fixed;
+        top: 50px;
+        left: 10px;
+        z-index: 1000;
+    }
+    
+    .title {
+        margin: 0;
+        /* Remove margin to align closely with the subtitle */
+    }
+    
+    #subtitle {
+        margin: 0;
+        /* Remove margin to align closely with the title */
+    }
+
+    .sidebar {
+        height: 90%;
+        width: 30px;
+        position: fixed;
+        z-index: 1;
+        top: 10px;
+        right: 0;
+        background-color: whitesmoke;
+        overflow-x: hidden;
+        transition: width 0.25s ease;
+        padding-top: 30px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0px 4px 8px rgba(0,0,0,0.5), 0 6px 20px rgba(0,0,0,0.5);
+
+        #sidebarTitle {
+            padding-bottom: 20px;
+            visibility: hidden;
+
+            transition: visibility 0.5s ease;
+        }
+
+        &:hover,&.open {
+            #sidebarTitle{
+                visibility: visible;
+            }
+
+            .btn {
+                visibility: visible;
+            }
+        }
+
+        &:hover {
+            width: 250px;
+        }
+
+        a {
+            padding: 5px;
+            text-decoration: none;
+            font-size: 18px;
+            color: black;
+            display: block;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .btn {
+            visibility: hidden;
+            transition: visibility 0.25s ease;
+        }
+    }
 }
