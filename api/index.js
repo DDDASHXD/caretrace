@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
   confirmationToken: String,
   passwordResetToken: String,
   passwordResetExpires: Date,
-  members: { type: Array, default: [] },
+  admin: Boolean,
 });
 
 const memberSchema = new mongoose.Schema({
@@ -39,12 +39,14 @@ const memberSchema = new mongoose.Schema({
 const deviceSchema = new mongoose.Schema({
   name: String,
   owner: String,
+  citizen: String,
   locX: Number,
   locY: Number,
 });
 
 const User = mongoose.model("User", userSchema);
 const Member = mongoose.model("Member", memberSchema);
+const Device = mongoose.model("Device", deviceSchema);
 
 app.post("/register", async (req, res) => {
   const { username, password, name, surname, email } = req.body;
