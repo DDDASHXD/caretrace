@@ -14,6 +14,9 @@ import { LayoutDashboard } from "tabler-icons-react";
 import DashMembers from "./subpages/DashMembers";
 import { Users } from "tabler-icons-react";
 
+import DashSocket from "./subpages/DashSocket";
+import { Database } from "tabler-icons-react";
+
 const Dashboard = () => {
   const [user, setUser] = React.useState({});
   const navigate = useNavigate();
@@ -29,14 +32,19 @@ const Dashboard = () => {
 
   const pages = [
     {
-      name: "home",
+      name: "Home",
       component: <DashHome user={user} />,
       icon: <LayoutDashboard />,
     },
     {
-      name: "members",
+      name: "Members",
       component: <DashMembers user={user} />,
       icon: <Users />,
+    },
+    {
+      name: "Soocket test",
+      component: <DashSocket user={user} />,
+      icon: <Database />,
     },
   ];
 

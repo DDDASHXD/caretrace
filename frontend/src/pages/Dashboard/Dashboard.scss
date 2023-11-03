@@ -32,3 +32,19 @@
         padding: 20px;
     }
 }
+
+.DashHome {
+    .indicator {
+        background: var(--danger);
+        display: flex;
+        width: max-content;
+        padding: 5px 15px;
+        border-radius: 999px;
+        color: white;
+        font-size: .7rem;
+
+        &.verified {
+            background: var(--brand);
+        }
+    }
+}

@@ -21,6 +21,11 @@
     font-family: "Open Sans", sans-serif;
 }
 
+a {
+    color: var(--brand);
+    text-decoration: underline;
+}
+
 .App {
     width: 100vw;
     height: 100vh;
