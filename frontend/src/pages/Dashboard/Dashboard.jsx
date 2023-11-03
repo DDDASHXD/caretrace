@@ -7,6 +7,13 @@ import { io } from "socket.io-client";
 
 import Input from "../../components/Input/Input";
 
+// Subpages
+import DashHome from "./subpages/DashHome";
+import { LayoutDashboard } from "tabler-icons-react";
+
+import DashMembers from "./subpages/DashMembers";
+import { Users } from "tabler-icons-react";
+
 const Dashboard = () => {
   const [user, setUser] = React.useState({});
   const navigate = useNavigate();
@@ -17,6 +24,21 @@ const Dashboard = () => {
 
   const [memberName, setMemberName] = React.useState("");
   const [memberSurname, setMemberSurname] = React.useState("");
+
+  const [activePage, setActivePage] = React.useState(0);
+
+  const pages = [
+    {
+      name: "home",
+      component: <DashHome user={user} />,
+      icon: <LayoutDashboard />,
+    },
+    {
+      name: "members",
+      component: <DashMembers user={user} />,
+      icon: <Users />,
+    },
+  ];
 
   React.useEffect(() => {
     const localUser = getUser();
@@ -45,7 +67,7 @@ const Dashboard = () => {
     if (user) {
       getMembers();
     }
-  }, [user])
+  }, [user]);
 
   React.useEffect(() => {
     const socket = io("ws://localhost:5050");
@@ -92,7 +114,7 @@ const Dashboard = () => {
     <div className="Dashboard">
       {user && (
         <>
-          <h1>Dashboard</h1>
+          {/* <h1>Dashboard</h1>
           <h3>Welcome, {user.name}</h3>
           <p>
             Your account is {user.isVerified ? "verified." : "not verified."}
@@ -129,7 +151,23 @@ const Dashboard = () => {
             </ul>
           ) : (
             <p>No members</p>
-          )}
+          )}*/}
+          <div className="sidePanel">
+            <h2>CareTrace</h2>
+            <div className="pages">
+              {pages.map((page, index) => (
+                <div
+                  className={`page ${activePage == index ? "active" : ""}}`}
+                  key={page.name}
+                  onClick={() => setActivePage(index)}
+                >
+                  {page.icon}
+                  <p>{page.name}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mainPanel">{pages[activePage].component}</div>
         </>
       )}
     </div>

@@ -15,7 +15,7 @@ const SocketTest = () => {
     setSocket(newSocket);
 
     let lastEmitTime = Date.now();
-    const throttleDuration = 1000; // 1 second
+    const throttleDuration = 500; // 1 second
 
     const handleMouseMove = (e) => {
       const currentTime = Date.now();
