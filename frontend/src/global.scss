@@ -44,11 +44,10 @@ table {
     }
 
     tr:nth-child(even) {
-        background-color: #f9f9f9;
     }
 
-    tr:hover {
-        background-color: #e6e6e6;
+    tr:hover:not(:nth-child(1)) {
+        background-color: #f9f9f9;
     }
 }
 
