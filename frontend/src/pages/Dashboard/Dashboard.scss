@@ -53,6 +53,11 @@
                 &.active {
                     color: var(--brand);
                 }
+
+                &:hover {
+                    color: var(--brand);
+                    transition-duration: 0s;
+                }
             }
         }
     }
@@ -83,7 +88,6 @@
     width: 100%;
 
     table {
-        width: 30%;
 
         .actions {
             button {
