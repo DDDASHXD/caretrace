@@ -209,6 +209,20 @@ app.post("/addMember", async (req, res) => {
   res.status(201).send({ msg: "Member added", member: newMember });
 });
 
+//Delete member by id from req.body
+app.post("/deleteMember", async (req, res) => {
+  const { id } = req.query;
+  console.log(id);
+
+  const member = await Member.findByIdAndDelete(id);
+
+  if (!member) {
+    return res.status(404).send("Member not found");
+  }
+
+  res.status(200).send("Member deleted");
+});
+
 app.listen(process.env.API_PORT, () => {
   console.log(`Server running on http://localhost:${process.env.API_PORT}`);
 });
