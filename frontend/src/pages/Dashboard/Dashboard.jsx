@@ -39,12 +39,12 @@ const Dashboard = () => {
       icon: <LayoutDashboard />,
     },
     {
-      name: "Members",
+      name: "Citizens",
       component: <DashMembers user={user} />,
       icon: <Users />,
     },
     {
-      name: "Soocket test",
+      name: "Socket test",
       component: <DashSocket user={user} />,
       icon: <Database />,
     },
@@ -120,6 +120,24 @@ const Dashboard = () => {
     clearUser();
     navigate("/");
   };
+
+  const indicator = React.useRef(null);
+  const activePageRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (indicator.current && activePageRef.current) {
+      setTimeout(() => {
+        const indicatorBounds = indicator.current.getBoundingClientRect();
+        const activePageBounds = activePageRef.current.getBoundingClientRect();
+
+        indicator.current.style.top = `${activePageBounds.top - 30}px`;
+        indicator.current.style.height = `${activePageBounds.height}px`;
+        indicator.current.style.width = `${activePageBounds.width}px`;
+        indicator.current.style.left = `${activePageBounds.left - 30}px`;
+      }, 1);
+    }
+  }, [activePageRef.current]);
+
   return (
     <div className="Dashboard">
       {user && (
@@ -165,11 +183,13 @@ const Dashboard = () => {
           <div className="sidePanel">
             <img src={logo} alt="" onClick={() => window.open("/", "_self")} />
             <div className="pages">
+              <div className="indicator" ref={indicator}></div>
               {pages.map((page, index) => (
                 <div
-                  className={`page ${activePage == index ? "active" : ""}}`}
+                  className={`page ${activePage == index ? "active" : ""}`}
                   key={page.name}
                   onClick={() => setActivePage(index)}
+                  ref={activePage == index ? activePageRef : null}
                 >
                   {page.icon}
                   <p>{page.name}</p>
