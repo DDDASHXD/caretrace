@@ -7,6 +7,8 @@ import { io } from "socket.io-client";
 
 import Input from "../../components/Input/Input";
 
+import logo from "../../assets/branding/logo.png";
+
 // Subpages
 import DashHome from "./subpages/DashHome";
 import { LayoutDashboard } from "tabler-icons-react";
@@ -161,7 +163,7 @@ const Dashboard = () => {
             <p>No members</p>
           )}*/}
           <div className="sidePanel">
-            <h2>CareTrace</h2>
+            <img src={logo} alt="" onClick={() => window.open("/", "_self")} />
             <div className="pages">
               {pages.map((page, index) => (
                 <div

@@ -5,10 +5,16 @@
     .sidePanel {
         background: rgb(230, 230, 230);
         padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
 
-        h2 {
-            margin-bottom: 20px;
+        img {
+            width: 7rem;
+            cursor: pointer;
         }
+        
 
         .pages {
             display: flex;

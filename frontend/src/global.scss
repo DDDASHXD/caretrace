@@ -26,6 +26,20 @@ a {
     text-decoration: underline;
 }
 
+table {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    tr {
+        text-align: left;
+        background: red;
+
+        th,td {
+            padding-right: 10px;
+        }
+    }
+}
+
 .App {
     width: 100vw;
     height: 100vh;
