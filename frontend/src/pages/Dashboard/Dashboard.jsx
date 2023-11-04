@@ -48,6 +48,51 @@ const Dashboard = () => {
       component: <DashSocket user={user} />,
       icon: <Database />,
     },
+    {
+      name: "Socket test",
+      component: <DashSocket user={user} />,
+      icon: <Database />,
+    },
+    {
+      name: "Socket test",
+      component: <DashSocket user={user} />,
+      icon: <Database />,
+    },
+    {
+      name: "Socket test",
+      component: <DashSocket user={user} />,
+      icon: <Database />,
+    },
+    {
+      name: "Socket test",
+      component: <DashSocket user={user} />,
+      icon: <Database />,
+    },
+    {
+      name: "Socket test",
+      component: <DashSocket user={user} />,
+      icon: <Database />,
+    },
+    {
+      name: "Socket test",
+      component: <DashSocket user={user} />,
+      icon: <Database />,
+    },
+    {
+      name: "Socket test",
+      component: <DashSocket user={user} />,
+      icon: <Database />,
+    },
+    {
+      name: "Socket test",
+      component: <DashSocket user={user} />,
+      icon: <Database />,
+    },
+    {
+      name: "Socket test",
+      component: <DashSocket user={user} />,
+      icon: <Database />,
+    },
   ];
 
   React.useEffect(() => {
