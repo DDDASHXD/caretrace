@@ -38,6 +38,7 @@ const Input = (props) => {
         onFocus={() => handleOnFocus()}
         onBlur={() => handleOnBlur()}
         ref={inputEl}
+        value={props.value ? props.value : input}
       />
     </div>
   );
