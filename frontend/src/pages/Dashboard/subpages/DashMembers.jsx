@@ -31,12 +31,16 @@ const DashMembers = (props) => {
     await axios
       .get(`http://localhost:5000/getMembers?owner=${props.user.email}`)
       .then((e) => {
-        newMembers = e.data;
         console.log(e.data);
+        setMembers(
+          e.data.map((member) => ({ ...member, x: 0, y: 0, geoSafe: true }))
+        );
       })
       .catch((e) => {
         console.error(e.data);
       });
+
+    console.log("newMembers", newMembers);
 
     newMembers.forEach((member) => {
       setMembers([...members, { ...member, x: 0, y: 0, geoSafe: true }]);
@@ -95,17 +99,16 @@ const DashMembers = (props) => {
       </div>
       <table>
         <tr>
-          <th>ID</th>
           <th>Name</th>
           <th>Surname</th>
           <th>Coordinates</th>
           <th>GeoSafe</th>
           <th>Socket</th>
           <th>Actions</th>
+          <th>ID</th>
         </tr>
         {members.map((member) => (
           <tr>
-            <td>{member._id}</td>
             <td>{member.name}</td>
             <td>{member.surname}</td>
             <td
@@ -134,11 +137,12 @@ const DashMembers = (props) => {
                 <Trash size={14} color="var(--danger)" />
               </button>
             </td>
+            <td>{member._id}</td>
           </tr>
         ))}
         {members.length == 0 && (
           <tr>
-            <td colSpan="3">You currently have no citizens registered.</td>
+            <td colSpan="7">You currently have no citizens registered.</td>
           </tr>
         )}
       </table>

@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
   confirmationToken: String,
   passwordResetToken: String,
   passwordResetExpires: Date,
-  admin: Boolean,
+  admin: {type: Boolean, default: false},
 });
 
 const memberSchema = new mongoose.Schema({
@@ -144,6 +144,20 @@ app.post("/getuser", async (req, res) => {
   } else {
     res.status(403).send("Invalid password");
   }
+});
+
+//get all users
+app.get("/getAllUsers", async (req, res) => {
+  console.log("/getAllUsers request");
+  const users = await User.find();
+
+  if (!users) {
+    return res.status(404).send("No users found");
+  }
+
+  console.log(users);
+
+  res.status(200).send(users);
 });
 
 app.get("/confirm/:token", async (req, res) => {

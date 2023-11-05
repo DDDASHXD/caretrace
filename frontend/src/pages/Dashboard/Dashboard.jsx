@@ -19,6 +19,8 @@ import { Users } from "tabler-icons-react";
 import DashSocket from "./subpages/DashSocket";
 import { Database } from "tabler-icons-react";
 
+import DashUsers from "./subpages/DashUsers";
+
 const Dashboard = () => {
   const [user, setUser] = React.useState({});
   const navigate = useNavigate();
@@ -47,6 +49,12 @@ const Dashboard = () => {
       name: "Socket test",
       component: <DashSocket user={user} />,
       icon: <Database />,
+    },
+    {
+      name: "Users",
+      admin: true,
+      component: <DashUsers user={user} />,
+      icon: <Users />,
     },
   ];
 
@@ -185,15 +193,19 @@ const Dashboard = () => {
             <div className="pages">
               <div className="indicator" ref={indicator}></div>
               {pages.map((page, index) => (
-                <div
-                  className={`page ${activePage == index ? "active" : ""}`}
-                  key={page.name}
-                  onClick={() => setActivePage(index)}
-                  ref={activePage == index ? activePageRef : null}
-                >
-                  {page.icon}
-                  <p>{page.name}</p>
-                </div>
+                <>
+                  {page.admin && !user.admin ? null : (
+                    <div
+                      className={`page ${activePage == index ? "active" : ""}`}
+                      key={page.name}
+                      onClick={() => setActivePage(index)}
+                      ref={activePage == index ? activePageRef : null}
+                    >
+                      {page.icon}
+                      <p>{page.name}</p>
+                    </div>
+                  )}
+                </>
               ))}
             </div>
           </div>
