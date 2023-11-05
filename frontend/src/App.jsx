@@ -16,6 +16,7 @@ import SocketTest from "./pages/SocketTest/SocketTest";
 
 import useOnTabFocus from "./helpers/useOnTabFocus";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
+import { ModalManager } from "./helpers/ModalManager";
 
 function App() {
   useOnTabFocus(() => {
@@ -41,19 +42,21 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<Landing />} />
-          <Route exact path="/dashboard" element={<Dashboard />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/register" element={<Register />} />
-          <Route exact path="/forgotpassword" element={<ForgotPassword />} />
-          <Route exact path="*" element={<NotFound />} />
-          <Route exact path="/confirm/:token" element={<Confirm />} />
-          <Route exact path="/reset/:token" element={<ResetPassword />} />
-          <Route exact path="/socket" element={<SocketTest />} />
-        </Routes>
-      </Router>
+      <ModalManager>
+        <Router>
+          <Routes>
+            <Route exact path="/" element={<Landing />} />
+            <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/forgotpassword" element={<ForgotPassword />} />
+            <Route exact path="*" element={<NotFound />} />
+            <Route exact path="/confirm/:token" element={<Confirm />} />
+            <Route exact path="/reset/:token" element={<ResetPassword />} />
+            <Route exact path="/socket" element={<SocketTest />} />
+          </Routes>
+        </Router>
+      </ModalManager>
     </div>
   );
 }

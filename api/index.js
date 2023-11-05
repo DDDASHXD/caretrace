@@ -160,6 +160,38 @@ app.get("/getAllUsers", async (req, res) => {
   res.status(200).send(users);
 });
 
+
+app.post("/changeUsername", async (req, res) => {
+  const { id, newUsername } = req.body;
+  console.log(id);
+
+  const user = await User.findById(id);
+
+  if (!user) {
+    return res.status(404).send("User not found");
+  }
+
+  user.username = newUsername;
+  await user.save();
+
+  res.status(200).send(user);
+});
+
+
+// Delete user, but confirm that the user sending the delete request is an admin
+app.post("/deleteUser", async (req, res) => {
+  const { id } = req.query;
+  console.log(id);
+
+  const user = await User.findByIdAndDelete(id);
+
+  if (!user) {
+    return res.status(404).send("User not found");
+  }
+
+  res.status(200).send("User deleted");
+});
+
 app.get("/confirm/:token", async (req, res) => {
   const { token } = req.params;
 
