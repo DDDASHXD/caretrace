@@ -21,10 +21,10 @@ const createSocket = (port) => {
 
       if (x > 550 || x < 250 || y > 550 || y < 250) {
         console.log("Outside of geofence");
-        socket.broadcast.emit("coords", { x, y, geoSafe: false });
+        socket.broadcast.emit("coords", { x, y, geoSafe: false, member: e.member });
       } else {
         console.log("inside of geofence");
-        socket.broadcast.emit("coords", { x, y, geoSafe: true });
+        socket.broadcast.emit("coords", { x, y, geoSafe: true, member: e.member });
       }
     });
 

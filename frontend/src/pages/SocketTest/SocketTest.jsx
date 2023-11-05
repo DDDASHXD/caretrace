@@ -1,5 +1,6 @@
 import React from "react";
 import { io } from "socket.io-client";
+import axios from "axios";
 
 import "./SocketTest.scss";
 
@@ -9,8 +10,23 @@ const SocketTest = () => {
   const [socket, setSocket] = React.useState(null);
   const hoverZone = React.useRef(null);
 
+  const [members, setMembers] = React.useState([]);
+  const [member, setMember] = React.useState(null);
+
+  const getMembers = async () => {
+    await axios
+      .get("http://localhost:5000/getAllMembers")
+      .then((e) => {
+        setMembers(e.data);
+      })
+      .catch((e) => {
+        console.error(e.data);
+      });
+  };
+
   // Socket handling
   React.useEffect(() => {
+    getMembers();
     const newSocket = io("ws://localhost:5050");
     setSocket(newSocket);
 
@@ -25,7 +41,7 @@ const SocketTest = () => {
         const x = e.clientX;
         const y = e.clientY;
         setCoords({ x: e.clientX, y: e.clientY });
-        newSocket.emit("coords", { x, y });
+        newSocket.emit("coords", { member: member, x, y });
       }
     };
 
@@ -48,6 +64,15 @@ const SocketTest = () => {
 
   return (
     <div>
+      Select citizen:
+      <select onChange={(e) => setMember(e.target.value)}>
+        {members.map((member) => (
+          <option value={member._id}>
+            {member.name} {member.surname}
+          </option>
+        ))}
+      </select>
+      <p>{member}</p>
       <div className="gpssim" ref={hoverZone}>
         <h1 style={{ fontSize: "3rem" }}>Udenfor plejehjem</h1>
       </div>

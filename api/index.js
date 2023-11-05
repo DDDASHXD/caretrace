@@ -223,6 +223,21 @@ app.post("/deleteMember", async (req, res) => {
   res.status(200).send("Member deleted");
 });
 
+
+// Get all members
+app.get("/getAllMembers", async (req, res) => {
+  console.log("/getAllMembers request");
+  const members = await Member.find();
+
+  if (!members) {
+    return res.status(404).send("No members found");
+  }
+
+  console.log(members);
+
+  res.status(200).send(members);
+});
+
 app.listen(process.env.API_PORT, () => {
   console.log(`Server running on http://localhost:${process.env.API_PORT}`);
 });
