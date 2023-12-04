@@ -9,6 +9,7 @@ const SocketTest = () => {
   const [coords, setCoords] = React.useState({ x: 0, y: 0 });
   const [socket, setSocket] = React.useState(null);
   const hoverZone = React.useRef(null);
+  const [battery, setBattery] = React.useState(100);
 
   const [members, setMembers] = React.useState([]);
   const [member, setMember] = React.useState(null);
@@ -22,6 +23,10 @@ const SocketTest = () => {
       .catch((e) => {
         console.error(e.data);
       });
+  };
+
+  const saveBattery = () => {
+    socket.emit("battery", { member: member, battery: battery });
   };
 
   // Socket handling
@@ -76,11 +81,13 @@ const SocketTest = () => {
       <div className="gpssim" ref={hoverZone}>
         <h1 style={{ fontSize: "3rem" }}>Udenfor plejehjem</h1>
       </div>
-      <button
-        style={{ fontSize: 60, padding: "0 50px" }}
-        onClick={() => setCounter(counter + 1)}
-      >
-        +
+      <input
+        type="number"
+        onChange={(e) => setBattery(e.target.value)}
+        value={battery}
+      />
+      <button className="save" onClick={() => saveBattery()}>
+        Save battery to user
       </button>
       <p>
         x: {coords.x} | y: {coords.y}

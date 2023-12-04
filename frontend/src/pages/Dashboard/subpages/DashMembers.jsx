@@ -33,7 +33,13 @@ const DashMembers = (props) => {
       .then((e) => {
         console.log(e.data);
         setMembers(
-          e.data.map((member) => ({ ...member, x: 0, y: 0, geoSafe: true }))
+          e.data.map((member) => ({
+            ...member,
+            x: 0,
+            y: 0,
+            geoSafe: true,
+            battery: 100,
+          }))
         );
       })
       .catch((e) => {
@@ -63,7 +69,24 @@ const DashMembers = (props) => {
     socket.on("coords", (e) => {
       const newMembers = members.map((member) => {
         if (member._id == e.member) {
+          if (!e.geoSafe) {
+            alert("Citizen is outside of geofence!");
+          }
           return { ...member, x: e.x, y: e.y, geoSafe: e.geoSafe };
+        } else {
+          return member;
+        }
+      });
+      setMembers(newMembers);
+    });
+
+    socket.on("battery", (e) => {
+      const newMembers = members.map((member) => {
+        if (member._id == e.member) {
+          if (e.battery < 20) {
+            alert("Citizen's battery is low!");
+          }
+          return { ...member, battery: e.battery };
         } else {
           return member;
         }
@@ -95,7 +118,6 @@ const DashMembers = (props) => {
           value={memberSurname}
         />
         <button onClick={() => addMember()}>Add user</button>
-        <button onClick={() => console.log(members)}>aa</button>
       </div>
       <table>
         <tr>
@@ -103,7 +125,7 @@ const DashMembers = (props) => {
           <th>Surname</th>
           <th>Coordinates</th>
           <th>GeoSafe</th>
-          <th>Socket</th>
+          <th>Battery</th>
           <th>Actions</th>
           <th>ID</th>
         </tr>
@@ -119,16 +141,7 @@ const DashMembers = (props) => {
               x: {member.x} y: {member.y}
             </td>
             <td>{member.geoSafe ? "Safe" : "Not safe"}</td>
-            <td>
-              <a
-                href="#"
-                onClick={() =>
-                  window.open("http://localhost:3000/socket", "_blank")
-                }
-              >
-                Click to open test
-              </a>
-            </td>
+            <td>{member.battery}%</td>
             <td className="actions">
               <button
                 className="delete"

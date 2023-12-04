@@ -40,6 +40,11 @@ const createSocket = (port) => {
         console.log(e);
       }
     });
+
+    socket.on("battery", (e) => {
+      console.log("battery", e);
+      socket.broadcast.emit("battery", {member: e.member, battery: e.battery});
+    })
   });
 };
 
