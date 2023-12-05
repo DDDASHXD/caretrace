@@ -14,9 +14,15 @@ const DashUsers = (props) => {
   const [emailStatus, setEmailStatus] = React.useState(null);
   const [passwordStatus, setPasswordStatus] = React.useState(null);
 
+  const [username, setUsername] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [surname, setSurname] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
   const getUsers = async () => {
     await axios
-      .get("http://localhost:5000/getAllUsers")
+      .get("http://172.20.10.3:5000/getAllUsers")
       .then((e) => {
         console.log(e.data);
         setUsers(e.data);
@@ -28,8 +34,25 @@ const DashUsers = (props) => {
 
   const deleteUser = async (id) => {
     await axios
-      .post(`http://localhost:5000/deleteUser?id=${id}`)
+      .post(`http://172.20.10.3:5000/deleteUser?id=${id}`)
       .then((e) => {
+        getUsers();
+      })
+      .catch((e) => {
+        console.error(e.data);
+      });
+  };
+
+  const changeUsername = async (id, modalId) => {
+    console.log("id", id);
+    console.log("username", username);
+    axios
+      .post("http://172.20.10.3:5000/changeUsername", {
+        id,
+        newUsername: username,
+      })
+      .then((e) => {
+        console.log(e.data);
         getUsers();
       })
       .catch((e) => {
@@ -45,28 +68,21 @@ const DashUsers = (props) => {
       body: (
         <div className="editUser">
           <div className="row">
-            <Input placeholder="Change username" />
+            <Input
+              placeholder="Change username"
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
             <button
               className="confirm"
               onClick={(ev) => {
-                axios
-                  .post("http://localhost:5000/changeUsername", {
-                    id: userId,
-                    newUsername: ev.target.previousSibling.value,
-                  })
-                  .then((e) => {
-                    console.log(e.data);
-                    getUsers();
-                    close(id);
-                    console.log(ev.target.previousSibling.value);
-                  })
-                  .catch((e) => {
-                    console.error(e.data);
-                  });
+                changeUsername(userId, id);
               }}
             >
               Confirm
             </button>
+            <p>Username: {username}</p>
           </div>
           <div className="row">
             <Input placeholder="Change name" />

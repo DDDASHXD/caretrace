@@ -6,7 +6,7 @@ const DashSocket = () => {
   const [geoSafe, setGeoSafe] = React.useState(true);
 
   React.useEffect(() => {
-    const socket = io("ws://localhost:5050");
+    const socket = io("ws://172.20.10.3:5050");
     socket.on("coords", (e) => {
       setCoords({ x: e.x, y: e.y });
       if (e.geoSafe) {

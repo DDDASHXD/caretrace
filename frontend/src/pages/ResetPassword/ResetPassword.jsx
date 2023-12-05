@@ -14,7 +14,7 @@ const ResetPassword = () => {
   const submit = () => {
     if (password === confirmPassword) {
       axios
-        .post("http://localhost:5000/resetPassword", {
+        .post("http://172.20.10.3:5000/resetPassword", {
           token,
           newPassword: password,
         })

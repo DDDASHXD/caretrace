@@ -11,7 +11,7 @@ import logo from "../../assets/branding/logo.png";
 
 // Subpages
 import DashHome from "./subpages/DashHome";
-import { LayoutDashboard } from "tabler-icons-react";
+import { LayoutDashboard, Logout } from "tabler-icons-react";
 
 import DashMembers from "./subpages/DashMembers";
 import { Users } from "tabler-icons-react";
@@ -20,6 +20,8 @@ import DashSocket from "./subpages/DashSocket";
 import { Database } from "tabler-icons-react";
 
 import DashUsers from "./subpages/DashUsers";
+
+import { useModal } from "../../helpers/ModalManager";
 
 const Dashboard = () => {
   const [user, setUser] = React.useState({});
@@ -33,6 +35,8 @@ const Dashboard = () => {
   const [memberSurname, setMemberSurname] = React.useState("");
 
   const [activePage, setActivePage] = React.useState(0);
+
+  const { create, close } = useModal();
 
   const pages = [
     {
@@ -68,10 +72,27 @@ const Dashboard = () => {
     }
   }, []);
 
+  const confirmSignout = () => {
+    const id = Date.now();
+    create({
+      id,
+      title: "Sign out",
+      body: <p>Are you sure you want to sign out?</p>,
+      close: "Cancel",
+      onClose: () => close(id),
+      confirm: "Sign out",
+      onConfirm: () => {
+        handleSignOut();
+        close(id);
+      },
+      confirmColor: "var(--danger)",
+    });
+  };
+
   const getMembers = async () => {
     console.log("user.email", user.name);
     await axios
-      .get(`http://localhost:5000/getMembers?owner=${user.email}`)
+      .get(`http://172.20.10.3:5000/getMembers?owner=${user.email}`)
       .then((e) => {
         setMembers(e.data);
         console.log(e.data);
@@ -88,7 +109,7 @@ const Dashboard = () => {
   }, [user]);
 
   React.useEffect(() => {
-    const socket = io("ws://localhost:5050");
+    const socket = io("ws://172.20.10.3:5050");
 
     socket.on("counter", (e) => {
       setCounter(e);
@@ -110,7 +131,7 @@ const Dashboard = () => {
 
   const addMember = async () => {
     await axios
-      .post("http://localhost:5000/addMember", {
+      .post("http://172.20.10.3:5000/addMember", {
         owner: user.email,
         name: memberName,
         surname: memberSurname,
@@ -189,24 +210,41 @@ const Dashboard = () => {
             <p>No members</p>
           )}*/}
           <div className="sidePanel">
-            <img src={logo} alt="" onClick={() => window.open("/", "_self")} />
-            <div className="pages">
-              <div className="indicator" ref={indicator}></div>
-              {pages.map((page, index) => (
-                <>
-                  {page.admin && !user.admin ? null : (
-                    <div
-                      className={`page ${activePage == index ? "active" : ""}`}
-                      key={page.name}
-                      onClick={() => setActivePage(index)}
-                      ref={activePage == index ? activePageRef : null}
-                    >
-                      {page.icon}
-                      <p>{page.name}</p>
-                    </div>
-                  )}
-                </>
-              ))}
+            <div className="top">
+              <img
+                src={logo}
+                alt=""
+                onClick={() => window.open("/", "_self")}
+              />
+              <div className="pages">
+                <div className="indicator" ref={indicator}></div>
+                {pages.map((page, index) => (
+                  <>
+                    {page.admin && !user.admin ? null : (
+                      <div
+                        className={`page ${
+                          activePage == index ? "active" : ""
+                        }`}
+                        key={page.name}
+                        onClick={() => setActivePage(index)}
+                        ref={activePage == index ? activePageRef : null}
+                      >
+                        {page.icon}
+                        <p>{page.name}</p>
+                      </div>
+                    )}
+                  </>
+                ))}
+              </div>
+            </div>
+
+            <div className="account">
+              <h3 className="name">{user.name}</h3>
+              <p className="email">{user.email}</p>
+              <button onClick={() => confirmSignout()}>
+                <Logout />
+                Sign out
+              </button>
             </div>
           </div>
           <div className="mainPanel">{pages[activePage].component}</div>

@@ -12,7 +12,7 @@ const Confirm = () => {
     console.log("token", token);
     const confirmUser = async () => {
       await axios
-        .get(`http://localhost:5000/confirm/${token}`)
+        .get(`http://172.20.10.3:5000/confirm/${token}`)
         .then((res) => {
           console.log("res", res);
         })

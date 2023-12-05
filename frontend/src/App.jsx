@@ -24,7 +24,7 @@ function App() {
     const updateUser = async () => {
       if (user) {
         await axios
-          .post("http://localhost:5000/getuser", {
+          .post("http://172.20.10.3:5000/getuser", {
             username: user.username,
             password: user.password,
           })

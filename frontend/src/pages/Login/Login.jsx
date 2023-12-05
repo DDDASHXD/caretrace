@@ -21,7 +21,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     await axios
-      .post("http://localhost:5000/login", {
+      .post("http://172.20.10.3:5000/login", {
         username,
         password,
       })

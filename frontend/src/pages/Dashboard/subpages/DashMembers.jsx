@@ -11,7 +11,7 @@ const DashMembers = (props) => {
 
   const addMember = async () => {
     await axios
-      .post("http://localhost:5000/addMember", {
+      .post("http://172.20.10.3:5000/addMember", {
         owner: props.user.email,
         name: memberName,
         surname: memberSurname,
@@ -29,7 +29,7 @@ const DashMembers = (props) => {
     console.log("user.email", props.user.name);
     let newMembers = [];
     await axios
-      .get(`http://localhost:5000/getMembers?owner=${props.user.email}`)
+      .get(`http://172.20.10.3:5000/getMembers?owner=${props.user.email}`)
       .then((e) => {
         console.log(e.data);
         setMembers(
@@ -55,7 +55,7 @@ const DashMembers = (props) => {
 
   const deleteMember = async (id) => {
     await axios
-      .post(`http://localhost:5000/deleteMember?id=${id}`)
+      .post(`http://172.20.10.3:5000/deleteMember?id=${id}`)
       .then((e) => {
         getMembers();
       })
@@ -65,7 +65,7 @@ const DashMembers = (props) => {
   };
 
   React.useEffect(() => {
-    const socket = io("ws://localhost:5050");
+    const socket = io("ws://172.20.10.3:5050");
     socket.on("coords", (e) => {
       const newMembers = members.map((member) => {
         if (member._id == e.member) {

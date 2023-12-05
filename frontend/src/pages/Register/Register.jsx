@@ -24,7 +24,7 @@ const Register = () => {
   const register = async () => {
     if (password === passwordConfirm) {
       await axios
-        .post("http://localhost:5000/register", {
+        .post("http://172.20.10.3:5000/register", {
           name,
           surname,
           username,

@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
     position: relative;
     isolation: isolate;
@@ -20,6 +21,13 @@
     img {
       width: 7rem;
       cursor: pointer;
+    }
+
+    .top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
     }
 
     .indicator {
@@ -57,6 +65,42 @@
         &:hover {
           color: var(--brand);
           transition-duration: 0s;
+        }
+      }
+    }
+
+    .account {
+      width: 100%;
+      padding: 0 20px;
+
+      .email {
+        color: rgb(122, 122, 122);
+        margin-bottom: 10px;
+      }
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 10px;
+        width: 100%;
+        padding: 5px 20px;
+        background: none;
+        border: 1px solid var(--danger);
+
+        color: var(--danger);
+
+        .icon {
+          stroke: var(--danger);
+        }
+
+        &:hover {
+          background: var(--danger);
+          color: white;
+
+          .icon {
+            stroke: white;
+          }
         }
       }
     }

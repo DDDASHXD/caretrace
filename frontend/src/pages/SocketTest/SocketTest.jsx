@@ -16,7 +16,7 @@ const SocketTest = () => {
 
   const getMembers = async () => {
     await axios
-      .get("http://localhost:5000/getAllMembers")
+      .get("http://172.20.10.3:5000/getAllMembers")
       .then((e) => {
         setMembers(e.data);
       })
@@ -32,7 +32,7 @@ const SocketTest = () => {
   // Socket handling
   React.useEffect(() => {
     getMembers();
-    const newSocket = io("ws://localhost:5050");
+    const newSocket = io("ws://172.20.10.3:5050");
     setSocket(newSocket);
 
     let lastEmitTime = Date.now();
