@@ -1,28 +1,36 @@
 import React from "react";
 import "./Landing.scss";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 
 const Landing = () => {
-  const navigate = useNavigate();
   return (
     <div className="Landing">
+
+<div className="middle-section">
+        <h2>Welcome to Elder Guard</h2>
+        <p>Login or Register</p>
+        <div className="buttons">
+          <Link to="/login" className="button">Login</Link>
+          <Link to="/register" className="button">Register</Link>
+        </div>
+      </div>
+
       <div className="logo-container">
-        <h1 className="titlke" id="logo">Elder Guard</h1>
+        <h1 className="title" id="logo">Elder Guard</h1> 
         <h4 id="subtitle">We Love, We Care, We Protect</h4>
       </div>
 
-      <div className="sidebar" id="mySidebar">
-        <h2 id="sidebarTitle">MENU</h2>
-        <a href="#" id="homeBtn" className="btn">Home page</a>
-        <a href="#" id="aboutBtn" className="btn">About Us</a>
-        <a href="#" id="loginBtn" className="btn">Login</a>
-        <a href="#" id="registerBtn" className="btn">Register</a>
-      </div>
+      <header className="header">
+        <nav>
+          <ul>
+            <li><Link to="/home">HOME</Link></li> 
+            <li><Link to="/about">ABOUT</Link></li>
+            <li><Link to="/work">WORK</Link></li>
+          </ul>
+        </nav>
+      </header>
 
-      <div className="typing-container">
-        <span id="sentence"></span>
-      </div>
-      <a href="#" id="contactBtn" className="contact-button">Contact</a>
+      <a href="#" className="contact-button">Contact</a>
     </div>
   );
 };
