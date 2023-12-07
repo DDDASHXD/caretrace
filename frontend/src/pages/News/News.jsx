@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./Landing.scss";
+import "./News.scss";
 import { Link } from "react-router-dom"; 
 import logo from '../../assets/branding/logo.png'
 
-const Landing = () => {
+const News = () => {
   const [activePage, setActivePage] = useState("");
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const Landing = () => {
   }, []);
 
   return (
-    <div className="Landing">
+    <div className="News">
       <header className="header">
         <nav>
           <ul>
@@ -43,23 +43,14 @@ const Landing = () => {
         </nav>
       </header>
 
-<div className="middle-section">
-        <h2>Welcome to Care Trace</h2>
-        <p>We Love, We Care, We Protect</p>
-        <div className="buttons">
-          <Link to="/login" className="button">Login</Link>
-          <p5>or</p5>
-          <Link to="/register" className="button">Register</Link>
-        </div>
-      </div>
-
       <div className="logo-container">
         <img src={logo} alt="Logo" class="logo-image" />
       </div>
+
 
       <a href="#" className="contact-button">Contact</a>
     </div>
   );
 };
 
-export default Landing;
+export default News;

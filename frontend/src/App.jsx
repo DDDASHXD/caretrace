@@ -14,6 +14,8 @@ import Confirm from "./pages/Confirm/Confirm";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import SocketTest from "./pages/SocketTest/SocketTest";
 import About from "./pages/About/About";
+import News from "./pages/News/News";
+
 
 import useOnTabFocus from "./helpers/useOnTabFocus";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
@@ -56,6 +58,7 @@ function App() {
             <Route exact path="/reset/:token" element={<ResetPassword />} />
             <Route exact path="/socket" element={<SocketTest />} />
             <Route exact path="/about" element={<About />} />
+            <Route exact path="/news" element={<News />} />
           </Routes>
         </Router>
       </ModalManager>

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-.Landing {
+.News {
     font-family: 'Montserrat', sans-serif;
     background: linear-gradient(to bottom, white, white, white, white, white, rgb(139, 255, 139), green);
     height: 100vh;
@@ -11,50 +11,6 @@
     padding-left: 40px;
     position: relative; 
 
-    .middle-section {
-        text-align: center; 
-        position: absolute;
-        top: 50%; 
-        left: 50%;
-        transform: translate(-50%, -50%); 
-
-        h2 {
-            margin-bottom: 0.1em; 
-        }
-
-        p {
-            margin-bottom: 1em;
-            font-style: italic; 
-        }
-
-        .buttons {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center; 
-
-        p5 {
-            margin-top: 10px;
-            text-decoration: none;
-        }
-
-            .button {
-                background-color: #ffffff;
-                color: rgb(0, 0, 0);
-                text-decoration: none;
-                text-align: center;
-                padding: 10px 20px;
-                margin: 0 10px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: background-color 0.3s ease;
-
-                &:hover {
-                    background-color: #cff0e2;
-                }
-            }
-        }
-    }
 
     .contact-button {
         position: absolute; 
