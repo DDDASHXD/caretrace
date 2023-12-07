@@ -1,21 +1,11 @@
 import React from "react";
-import "./Landing.scss";
+import "./About.scss";
 import { Link } from "react-router-dom"; 
 import logo from '../../assets/branding/logo.png'
 
-const Landing = () => {
+const About = () => {
   return (
-    <div className="Landing">
-
-<div className="middle-section">
-        <h2>Welcome to Care Trace</h2>
-        <p>We Love, We Care, We Protect</p>
-        <div className="buttons">
-          <Link to="/login" className="button">Login</Link>
-          <p5>or</p5>
-          <Link to="/register" className="button">Register</Link>
-        </div>
-      </div>
+    <div className="About">
 
       <div className="logo-container">
         <img src={logo} alt="Logo" class="logo-image" />
@@ -36,4 +26,4 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default About;
