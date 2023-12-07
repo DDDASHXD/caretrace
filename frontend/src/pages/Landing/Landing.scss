@@ -19,7 +19,7 @@
         transform: translate(-50%, -50%); 
 
         h2 {
-            margin-bottom: 0.5em; 
+            margin-bottom: 0.1em; 
         }
 
         p {
@@ -28,13 +28,20 @@
         }
 
         .buttons {
+            margin-top: 30px;
             display: flex;
             justify-content: center; 
 
+        p5 {
+            margin-top: 9px;
+            text-decoration: none;
+        }
+
             .button {
-                background-color: #007bff;
-                color: white;
+                background-color: #ffffff;
+                color: rgb(0, 0, 0);
                 text-decoration: none;
+                text-align: center;
                 padding: 10px 20px;
                 margin: 0 10px;
                 border: none;
@@ -43,7 +50,7 @@
                 transition: background-color 0.3s ease;
 
                 &:hover {
-                    background-color: #0056b3;
+                    background-color: #cff0e2;
                 }
             }
         }
@@ -73,15 +80,12 @@
         }
     }
 
-    .logo-container {
+    .logo-image {
         position: fixed;
-        top: 150px;
-        left: 10px;
-        z-index: 1000;
-    }
-
-    .title, #subtitle {
-        margin: 0;
+        left: 40px;
+        top: 40px;
+        width: 100px;
+        background: transparent
     }
 
     .header {
@@ -91,6 +95,7 @@
         position: fixed;
         width: 100%;
         top: 0;
+        left: 0%;
         z-index: 1;
         text-align: center;
 
